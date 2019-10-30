@@ -50,6 +50,8 @@ bindsym $mod+d exec rofi -show run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+
+bindsym $mod+Shift+a focus child
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -144,6 +146,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+workspace_layout tabbed
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -168,6 +172,8 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
+
+focus_follows_mouse no
 
 #colors
 set_from_resource $term_background background
@@ -198,8 +204,6 @@ client.placeholder		#000000 #0C0C0C #FFFFFF #000000
 
 client.background		#2B2C2B
 
-
-
 gaps inner 14
 gaps outer -2
 smart_gaps on
@@ -216,4 +220,9 @@ exec --no-startup-id volumeicon
 exec --no-startup-id nm-applet
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id setxkbmap -model pc105 -layout us,ru "" -option grp:alt_shift_toggle
-exec --no-startup-id pasystray
+exec --no-startup-id i3-msg 'workspace 5; exec /opt/Telegram/Telegram'
+exec --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id i3-msg 'workspace 5; exec steam'
+exec --no-startup-id i3-msg 'workspace 5; exec discord'
+exec --no-startup-id i3-msg 'workspace 5; exec thunderbird'
+exec --no-startup-id udiskie --tray

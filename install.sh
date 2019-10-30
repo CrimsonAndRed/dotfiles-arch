@@ -65,4 +65,20 @@ inst "nitrogen" &&
 inst "ttf-hack" &&
 inst "tor" &&
 inst "htop" &&
-inst "pasystray"
+inst "pasystray" &&
+inst "xorg-xrandr" && 
+{
+	POLYBAR_CONFIG=$MY_HOME/.config/polybar
+	mkdir -p $POLYBAR_CONFIG && cp $DIR/configs/polybar_config $POLYBAR_CONFIG/compton &&
+	cp $DIR/configs/polybar_launch.sh $POLYBAR_CONFIG/launch.sh
+	echo "Copied polybar config to $POLYBAR_CONFIG"
+	
+} &&
+inst "adobe-source-han-sans-itc-fonts" &&
+inst "xorg-xprop" &&
+inst "pcmanfm udiskie" &&
+{
+	NOBEEP_CONFIG=/etc/modprobe.d/
+	cp $DIR/configs/nobeep.conf $NOBEEP_CONFIG/nobeep.conf
+	echo "Copied nobeep config to $NOBEEP_CONFIG"
+}
