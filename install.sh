@@ -15,13 +15,18 @@ inst() {
 }
 
 inst "base-devel" &&
-inst "neovim" &&
+{
+	NVIM_CONFIG=$MY_HOME/.config/nvim
+	inst "neovim"  &&
+	mkdir -p $NVIM_CONFIG && cp $DIR/configs/init.vim $NVIM_CONFIG &&
+	echo "Copied init.vim to $NVIM_CONFIG"
+	
+} &&
 inst "ntfs-3g" &&
 inst "nvidia nvidia-settings" &&
 inst "xorg-server" &&
 {
 	PAC_HOOK="/etc/pacman.d/hooks/"
-	DEST_PAC_HOOK=
 	mkdir -p $PAC_HOOK && cp $DIR/configs/nvidia.hook $PAC_HOOK &&
 	echo "Copied nvidia.hook to $PAC_HOOK"
 } &&
@@ -81,4 +86,5 @@ inst "pcmanfm udiskie" &&
 	NOBEEP_CONFIG=/etc/modprobe.d/
 	cp $DIR/configs/nobeep.conf $NOBEEP_CONFIG/nobeep.conf
 	echo "Copied nobeep config to $NOBEEP_CONFIG"
-}
+} &&
+inst "fzf"
